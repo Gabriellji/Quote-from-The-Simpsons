@@ -3,11 +3,11 @@ import './QuoteCard.css';
 
 const QuoteCard = ({ image, character, quote }) => (
     <figure className="QuoteCard">
-        <img src={image} alt={character} />
+        <img className="animationed" src={image} alt={character} />
         <figcaption>
-            <blockquote>{quote}</blockquote>
+            <blockquote className="animationed">{quote}</blockquote>
             <p>
-                <cite>{character}</cite>
+                <cite className="animationed">{character}</cite>
                 <span>&#9733;</span>
             </p>
         </figcaption>

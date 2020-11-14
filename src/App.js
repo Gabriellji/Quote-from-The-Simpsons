@@ -22,11 +22,11 @@ class App extends React.Component {
     axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')
       .then(response => response.data)
       .then(data => {
-        console.log(data[0])
         this.setState({ quote: data[0] })
-      })
+      });
 
-  }
+  };
+  
   render() {
     return (
       <div className="App">

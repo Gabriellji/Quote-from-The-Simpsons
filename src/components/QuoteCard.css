@@ -6,31 +6,45 @@
     border-radius: 2px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
     font-size: 1.2em;
-  }
-  
-  .QuoteCard img {
+}
+
+.QuoteCard img {
     display: flex;
     max-height: 120px;
     margin-right: 1.5rem;
-  }
-  
-  .QuoteCard blockquote {
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.QuoteCard blockquote {
     margin: 0 0 1rem 0;
-  }
-  
-  .QuoteCard figcaption p {
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.QuoteCard figcaption p {
     margin: 0.125rem 0 0 0;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-  }
-  
-  .QuoteCard figcaption p span {
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.QuoteCard figcaption p span {
     color: #ccc;
     cursor: pointer;
-  }
-  
-  .QuoteCard figcaption p span.is-favorite {
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.QuoteCard figcaption p span.is-favorite {
     color: #ecc94b;
-  }
-  
+}
+
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

@@ -7,31 +7,38 @@ import QuoteCard from './components/QuoteCard';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { quote: '' };
+    this.state = {
+      quote: {
+        quote: "Shut up, brain. I got friends now. I don't need you anymore.",
+        character: "Lisa Simpson",
+        image: "https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FLisaSimpson.png?1497567512083",
+        characterDirection: "Right"
+      }
+    };
     this.getQuote = this.getQuote.bind(this);
   }
 
   getQuote() {
     axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')
-    .then(response => response.data)
-    .then(data => {
-      console.log(data[0])
-      this.setState({ quote: data[0]})
-    })
+      .then(response => response.data)
+      .then(data => {
+        console.log(data[0])
+        this.setState({ quote: data[0] })
+      })
 
   }
   render() {
     return (
       <div className="App">
-        <QuoteCard 
-        image={this.state.quote.image}
-        quote={this.state.quote.quote}
-        character={this.state.quote.character}
+        <QuoteCard
+          image={this.state.quote.image}
+          quote={this.state.quote.quote}
+          character={this.state.quote.character}
         />
-        <button type="button" onClick={this.getQuote}>Get Quote</button>
+        <button  className="btn" type="button" onClick={this.getQuote}>Get Quote</button>
       </div>
     );
-  }  
+  }
 }
 
 export default App;

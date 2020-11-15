@@ -16,14 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')
-    .then(response => {
-      this.setState({ loading: true })
-      return response.data
-    })
-    .then(data => {
-      this.setState({ quote: data[0], loading: false })
-    });
+    this.getQuote();
   };
 
   getQuote() {

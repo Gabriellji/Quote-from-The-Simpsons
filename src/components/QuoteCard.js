@@ -4,7 +4,7 @@ import './QuoteCard.css';
 const QuoteCard = ({ image, character, quote }) => (
     <figure className="QuoteCard">
         <img className="animationed" src={image} alt={character} />
-        <figcaption>
+        <figcaption className="animationed">
             <blockquote className="animationed">{quote}</blockquote>
             <p>
                 <cite className="animationed">{character}</cite>

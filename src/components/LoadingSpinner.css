@@ -1,0 +1,24 @@
+.spiner_wrap {
+    position: absolute;
+    background: #ffffff;
+    width: 48%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: #c7dff3;
+    top: 25%;
+    left: 27%;
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

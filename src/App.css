@@ -18,3 +18,7 @@ body {
   background-color: gold;
   font-size: 20px;
 }
+
+.quote_wrap {
+  min-height: 270px;
+}

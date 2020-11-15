@@ -17,33 +17,38 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')
-      .then(response => response.data)
-      .then(data => {
-        this.setState({ quote: data[0] })
-      });
+    .then(response => {
+      this.setState({ loading: true })
+      return response.data
+    })
+    .then(data => {
+      this.setState({ quote: data[0], loading: false })
+    });
   };
 
   getQuote() {
     axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')
       .then(response => {
-        this.setState({ loading: true })
+        this.setState({ loading: false })
         return response.data
       })
       .then(data => {
-        this.setState({ quote: data[0], loading: false })
+        this.setState({ quote: data[0] })
       });
+      this.setState({ loading: true })
   }
 
   render() {
     const { loading } = this.state;
     return (
       <div className="App">
+        <div className="quote_wrap">
         {loading ? <LoadingSpinner /> : <QuoteCard
           image={this.state.quote.image}
           quote={this.state.quote.quote}
           character={this.state.quote.character}
         />}
-
+          </div>
         <button className="btn" type="button" onClick={this.getQuote}>Get Quote</button>
       </div>
     );

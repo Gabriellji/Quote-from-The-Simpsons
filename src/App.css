@@ -17,6 +17,12 @@ body {
   outline: none;
   background-color: gold;
   font-size: 20px;
+  transition: all .25s ease-in-out;
+}
+
+.btn:active {
+  transform: scale(0.96);
+  font-size: 19px;
 }
 
 .quote_wrap {

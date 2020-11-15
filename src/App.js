@@ -19,7 +19,7 @@ class App extends React.Component {
       .then(data => {
         this.setState({ quote: data[0] })
       });
-  }
+  };
 
   getQuote() {
     axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')

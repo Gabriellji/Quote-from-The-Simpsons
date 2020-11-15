@@ -2,20 +2,30 @@
     display: flex;
     padding: 1.25em;
     width: 400px;
+    min-height: 175px;
     border: 1px solid #f8f8f8;
     border-radius: 2px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
     font-size: 1.2em;
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 .QuoteCard img {
     display: flex;
     max-height: 120px;
     margin-right: 1.5rem;
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 .QuoteCard blockquote {
     margin: 0 0 1rem 0;
+}
+
+.QuoteCard figcaption {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .QuoteCard figcaption p {

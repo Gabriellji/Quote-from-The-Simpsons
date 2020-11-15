@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quote: '',
+      quote: null,
       loading: false,
     };
     this.getQuote = this.getQuote.bind(this);
@@ -28,7 +28,7 @@ class App extends React.Component {
       .then(data => {
         this.setState({ quote: data[0] })
       });
-      this.setState({ loading: true })
+    this.setState({ loading: true })
   }
 
   render() {
@@ -36,12 +36,15 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="quote_wrap">
-        {loading ? <LoadingSpinner /> : <QuoteCard
-          image={this.state.quote.image}
-          quote={this.state.quote.quote}
-          character={this.state.quote.character}
-        />}
-          </div>
+          {loading || !this.state.quote ? (
+            <LoadingSpinner />
+          ) : (
+              <QuoteCard
+                image={this.state.quote.image}
+                quote={this.state.quote.quote}
+                character={this.state.quote.character}
+              />)}
+        </div>
         <button className="btn" type="button" onClick={this.getQuote}>Get Quote</button>
       </div>
     );

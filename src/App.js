@@ -1,47 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './App.css';
 import QuoteCard from './components/QuoteCard';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quote: ''
-    };
-    this.getQuote = this.getQuote.bind(this);
-  }
+function App() {
 
-  componentDidMount() {
-    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')
-      .then(response => response.data)
-      .then(data => {
-        this.setState({ quote: data[0] })
-      });
+  const [quotes, setQuotes] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=3')
+      .then(res => {
+        setQuotes(res.data);
+      })
+      .catch(error => console.log(error));
+  }, []);
+
+  const getQuote = () => {
+    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=3')
+      .then(res => {
+        setQuotes(res.data);
+      })
+      .catch(error => console.log(error));
   };
 
-  getQuote() {
-    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes')
-      .then(response => response.data)
-      .then(data => {
-        this.setState({ quote: data[0] })
-      });
-  }
-
-  render() {
-    console.log(this.state.quote)
     return (
       <div className="App">
-        <QuoteCard
-          image={this.state.quote.image}
-          quote={this.state.quote.quote}
-          character={this.state.quote.character}
+        {quotes.map((el, i) => (
+          <QuoteCard
+          key={i}
+          image={el.image}
+          quote={el.quote}
+          character={el.character}
         />
-        <button className="btn" type="button" onClick={this.getQuote}>Get Quote</button>
+        ))}
+        <button className="btn" type="button" onClick={getQuote}>Get Quote</button>
       </div>
     );
   }
-}
 
 export default App;

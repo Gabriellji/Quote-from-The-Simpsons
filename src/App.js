@@ -3,15 +3,16 @@ import axios from 'axios';
 
 import './App.css';
 import QuoteCard from './components/QuoteCard';
-// import FilterBtn from './components/FilterBtn';
+import Button from './components/Button';
 
 function App() {
-
   let [ quotes, setQuotes ] = useState([]);
-  let [ show , setBool] = useState([]);
+  let [ show , setBoolean] = useState([]);
+  const endpoint = 'https://simpsons-quotes-api.herokuapp.com/quotes?count=3';
+
 
   useEffect(() => {
-    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=3')
+    axios.get(endpoint)
       .then(res => {
         setQuotes(res.data);
       })
@@ -19,26 +20,40 @@ function App() {
   }, []);
 
   const getQuote = () => {
-    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=3')
+    axios.get(endpoint)
       .then(res => {
         setQuotes(res.data);
       })
       .catch(error => console.log(error));
   };
 
-  const handlerClick = () => {setBool(!show)}
+  const getQuoteFromSimpson = () => {
+    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=10')
+      .then(res => {
+        const result = res.data.filter(name => name.character.includes('Simpson'));
+        setQuotes(result.slice(0, 3));
+      })
+      .catch(error => console.log(error));
+  };
+
+  const handlerClick = () => {
+    setBoolean(!show);
+    if(!show){
+      getQuoteFromSimpson()
+    }
+  }
     
 
     return (
       <div className="App">
         <button className="btn_filter" type="button" 
-        onClick={handlerClick}>Show Simpsons only : {show ? "ON" : "OFF"}</button>
+        onClick={handlerClick}>Show Simpsons only : {show ? "OFF" : "ON"}</button>
         <div className="quote_wrap">
         {/* <FilterBtn
         show={true}
         
         /> */}
-        {show ? (quotes
+        {!show ? (quotes
         .filter(name => name.character.includes('Simpson'))
         .map((el, i) => (
           <QuoteCard
@@ -57,7 +72,7 @@ function App() {
           />
         )))}
         </div>
-        <button className="btn" type="button" onClick={getQuote}>Get Quote</button>
+        <button className="btn" type="button" onClick={show ? getQuote : getQuoteFromSimpson}>Get Quote</button>
       </div>
     );
   }
